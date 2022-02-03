@@ -1,0 +1,55 @@
+
+SQL
+
+drop table client_information;
+drop table bank_account;
+
+CREATE TABLE client_information(
+client_id int auto_increment, #need to make it unique
+username varchar(220) UNIQUE,
+password varchar(220),
+firstName varchar(100),
+lastName varchar(100),
+email varchar(100),
+country varchar(10),
+addressStreet varchar(225),
+addressState varchar(2),
+addressZipCode int,
+constraint my_pk primary key (client_id)
+);
+
+SELECT * FROM client_information;
+
+-- insert into client_information (username, permPassword, permFirstName, permLastName, permEmail, permCountry, permAddressStreet, permAddressState, permAddressZipCode )
+-- values ('username', 'password', 'Stefan', 'Riley', 'Email', 'US', 'Street', 'GA', 2311);
+
+-- create table bank_account(
+-- mainBankAccountNumber int unique auto_increment,
+-- checkingAcctBalance int,
+-- savingAcctBalance int,
+-- client_id int,
+-- CONSTRAINT back_account_pk primary key (mainBankAccountNumber),
+-- CONSTRAINT bank_account_client_information_fk foreign key (client_id) references client_information(client_id)
+-- );
+
+create table bank_account(
+mainBankAccountNumber int unique auto_increment,
+checkingAcctBalance double,
+savingAcctBalance double,
+client_id int,
+CONSTRAINT back_account_pk primary key (mainBankAccountNumber),
+CONSTRAINT bank_account_client_information_fk foreign key (client_id) references client_information(client_id)
+);
+
+
+select * from bank_account;
+
+insert into bank_account(mainBankAccountNumber, checkingAcctBalance, savingAcctBalance, client_id)
+values (1, 500, 0, 1);
+
+-- create table test_table(
+-- 	id int auto_increment,
+-- 	string varchar
+-- )
+
+
